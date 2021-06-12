@@ -8,7 +8,6 @@ import time
 # classes
 class Kontroleur(object):
     def __init__(self):
-        self.bonjour()
         self.TARIFS = [
             {
                 "titre": "Jeune de moins de 18 ans : 5€"
@@ -31,12 +30,21 @@ class Kontroleur(object):
         print("Veuillez choisir une option parmi les suivantes :")
         for number, titre in enumerate(self.TARIFS, start=1):
             titre = titre["titre"]
-            print(f"{number}.  {titre}")
+            print(f"{number}. {titre}")
         cmd = input("Saisir le nombre correspondant : ")
-    """def confirmer_quitter(self, entrée):
-        input("Êtes-vous sûr de votre choix ?")
-        if entrée"""
+        if self.confirmer_quitter(cmd):
+            print("Hello world")
+        else:
+            print("Abandon de l'action")
+    def confirmer_quitter(self, entrée):
+        trouc = input(f"Êtes-vous sûr de votre choix du tarif {entrée} (o pour oui et n pour non) ? ")
+        if trouc == "o":
+            return True
+        else:
+            return False
+
 
 
 if __name__ == "__main__":
     controleur = Kontroleur()
+    controleur.bonjour()
