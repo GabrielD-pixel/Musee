@@ -32,19 +32,23 @@ class Kontroleur(object):
             titre = titre["titre"]
             print(f"{number}. {titre}")
         cmd = input("Saisir le nombre correspondant : ")
+        if self.tester_tarif(cmd):
+            print("Erreur !")
         if self.confirmer_quitter(cmd):
             print("Hello world")
         else:
             print("Abandon de l'action")
-    def confirmer_quitter(self, entrée):
-        trouc = input(f"Êtes-vous sûr de votre choix du tarif {entrée} (o pour oui et n pour non) ? ")
+    def confirmer_quitter(self, entree):
+        trouc = input(f"Êtes-vous sûr de votre choix du tarif {entree} (o pour oui et n pour non) ? ")
         if trouc == "o":
             return True
         else:
             return False
-
-
-
+    def tester_tarif(self, entree):
+        num = int(entree)
+        if num < 1 or num > 4:
+            return True
+        return False
 if __name__ == "__main__":
     controleur = Kontroleur()
     controleur.bonjour()
